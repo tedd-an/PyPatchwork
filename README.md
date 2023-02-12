@@ -1,2 +1,3 @@
-# PyPatchWork
-Python library to access Patchwork API
+# PyPatchwork
+PyPatchwork is a Python library to access the Patchwork REST API.
+
