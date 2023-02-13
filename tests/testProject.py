@@ -19,31 +19,31 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 import unittest
 import patchwork
 
+
 class TestProject(unittest.TestCase):
     def setUp(self):
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org')
+        self.pw = patchwork.Patchwork("https://patchwork.kernel.org")
         self.bt = self.pw.get_project(395)
 
     def testBasicAttributes(self):
         self.assertEqual(self.bt.id, 395)
-        self.assertEqual(self.bt.url,
-                         'https://patchwork.kernel.org/api/projects/395/')
-        self.assertEqual(self.bt.name, 'Bluetooth')
-        self.assertEqual(self.bt.link_name, 'bluetooth')
-        self.assertEqual(self.bt.list_id, 'linux-bluetooth.vger.kernel.org')
-        self.assertEqual(self.bt.list_email, 'linux-bluetooth@vger.kernel.org')
-        self.assertEqual(self.bt.web_url, '')
-        self.assertEqual(self.bt.scm_url, '')
-        self.assertEqual(self.bt.webscm_url, '')
-        self.assertEqual(self.bt.subject_match, '')
-        self.assertEqual(self.bt.list_archive_url, '')
-        self.assertEqual(self.bt.list_archive_url_format,
-                         'https://lore.kernel.org/r/{}')
-        self.assertEqual(self.bt.commit_url_format, '')
+        self.assertEqual(self.bt.url, "https://patchwork.kernel.org/api/projects/395/")
+        self.assertEqual(self.bt.name, "Bluetooth")
+        self.assertEqual(self.bt.link_name, "bluetooth")
+        self.assertEqual(self.bt.list_id, "linux-bluetooth.vger.kernel.org")
+        self.assertEqual(self.bt.list_email, "linux-bluetooth@vger.kernel.org")
+        self.assertEqual(self.bt.web_url, "")
+        self.assertEqual(self.bt.scm_url, "")
+        self.assertEqual(self.bt.webscm_url, "")
+        self.assertEqual(self.bt.subject_match, "")
+        self.assertEqual(self.bt.list_archive_url, "")
+        self.assertEqual(
+            self.bt.list_archive_url_format, "https://lore.kernel.org/r/{}"
+        )
+        self.assertEqual(self.bt.commit_url_format, "")
 
     def testMaintainersList(self):
         maintainers = self.bt.get_maintainers()
         self.assertEqual(len(maintainers), 6)
         for maintainer in maintainers:
-            self.assertIsInstance(maintainer,
-                                  patchwork.User.User)
+            self.assertIsInstance(maintainer, patchwork.User.User)

@@ -18,10 +18,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 """
 from .User import User
 
+
 class Check:
     """
     Class for Chceck object
     """
+
     def __init__(self, connection, attributes):
         self._connection = connection
         self._id = None
@@ -35,22 +37,22 @@ class Check:
         self.__update_attributes(attributes)
 
     def __update_attributes(self, attributes):
-        if 'id' in attributes:
-            self._id = attributes['id']
-        if 'url' in attributes:
-            self._url = attributes['url']
-        if 'user' in attributes:
-            self._user = attributes['user']
-        if 'date' in attributes:
-            self._date = attributes['date']
-        if 'state' in attributes:
-            self._state = attributes['state']
-        if 'target_url' in attributes:
-            self._target_url = attributes['target_url']
-        if 'context' in attributes:
-            self._context = attributes['context']
-        if 'description' in attributes:
-            self._description = attributes['description']
+        if "id" in attributes:
+            self._id = attributes["id"]
+        if "url" in attributes:
+            self._url = attributes["url"]
+        if "user" in attributes:
+            self._user = attributes["user"]
+        if "date" in attributes:
+            self._date = attributes["date"]
+        if "state" in attributes:
+            self._state = attributes["state"]
+        if "target_url" in attributes:
+            self._target_url = attributes["target_url"]
+        if "context" in attributes:
+            self._context = attributes["context"]
+        if "description" in attributes:
+            self._description = attributes["description"]
 
     @property
     def id(self):
@@ -106,4 +108,3 @@ class Check:
         User detail (partial)
         """
         return User(self._connection, self._user)
-

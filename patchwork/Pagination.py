@@ -16,6 +16,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/
 """
+
+
 class Pagination:
     def __init__(
         self,
@@ -40,19 +42,19 @@ class Pagination:
 
     def _get_next_link(self, headers):
         links = {}
-        if 'Link' in headers:
-            link_list = headers['Link'].split(', ')
+        if "Link" in headers:
+            link_list = headers["Link"].split(", ")
             for link in link_list:
-                url, rel = link.split('; ')
+                url, rel = link.split("; ")
                 url = url[1:-1]
                 rel = rel[5:-1]
                 links[rel] = url
         return links
 
     def _get_next_page(self):
-        print(f'link: {self.__next_link}')
+        print(f"link: {self.__next_link}")
         headers, data = self.__connection.request(
-            'GET',
+            "GET",
             self.__next_link,
         )
         data = data if data else []
@@ -60,8 +62,8 @@ class Pagination:
         self.__next_link = None
         if len(data) > 0:
             links = self._get_next_link(headers)
-            if 'next' in links:
-                self.__next_link = links['next']
+            if "next" in links:
+                self.__next_link = links["next"]
         self.__next_params = None
 
         content = []

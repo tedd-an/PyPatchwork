@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 """
 import patchwork.UserSettings
 
+
 class User:
     """
     Class for User object
@@ -38,23 +39,23 @@ class User:
     def _update_attributes(self, attributes):
         if attributes == None:
             return
-        if 'id' in attributes:
-            self._id = attributes['id']
-        if 'url' in attributes:
-            self._url = attributes['url']
-        if 'username' in attributes:
-            self._username = attributes['username']
-        if 'first_name' in attributes:
-            self._first_name = attributes['first_name']
-        if 'last_name' in attributes:
-            self._last_name = attributes['last_name']
-        if 'email' in attributes:
-            self._email = attributes['email']
-        if 'settings' in attributes:
-            self._settings = attributes['settings']
+        if "id" in attributes:
+            self._id = attributes["id"]
+        if "url" in attributes:
+            self._url = attributes["url"]
+        if "username" in attributes:
+            self._username = attributes["username"]
+        if "first_name" in attributes:
+            self._first_name = attributes["first_name"]
+        if "last_name" in attributes:
+            self._last_name = attributes["last_name"]
+        if "email" in attributes:
+            self._email = attributes["email"]
+        if "settings" in attributes:
+            self._settings = attributes["settings"]
 
     def __repr__(self):
-        return f'User(id:{self._id} username:{self._username})'
+        return f"User(id:{self._id} username:{self._username})"
 
     @property
     def id(self):
@@ -104,5 +105,3 @@ class User:
         :type: UserSetting
         """
         return patchwork.UserSettings.UserSettings(self._connection, self._settings)
-
-

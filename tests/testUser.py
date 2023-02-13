@@ -21,25 +21,27 @@ import os
 
 import patchwork
 
+
 class TestUser(unittest.TestCase):
     def testBasicAttributes(self):
-        self.assertIn('PW_USER_TOKEN', os.environ,
-                      "Missing PW_TOKEN environment variable")
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org',
-                                      os.environ['PW_USER_TOKEN'])
+        self.assertIn(
+            "PW_USER_TOKEN", os.environ, "Missing PW_TOKEN environment variable"
+        )
+        self.pw = patchwork.Patchwork(
+            "https://patchwork.kernel.org", os.environ["PW_USER_TOKEN"]
+        )
         self.user = self.pw.get_user(104215)
         self.assertEqual(self.user.id, 104215)
-        self.assertEqual(self.user.url,
-                         'https://patchwork.kernel.org/api/users/104215/')
-        self.assertEqual(self.user.username, 'tedd_an')
-        self.assertEqual(self.user.first_name, 'Tedd')
-        self.assertEqual(self.user.last_name, 'An')
-        self.assertEqual(self.user.email, 'tedd.an@intel.com')
-        self.assertIsInstance(self.user.settings,
-                              patchwork.UserSettings.UserSettings)
+        self.assertEqual(
+            self.user.url, "https://patchwork.kernel.org/api/users/104215/"
+        )
+        self.assertEqual(self.user.username, "tedd_an")
+        self.assertEqual(self.user.first_name, "Tedd")
+        self.assertEqual(self.user.last_name, "An")
+        self.assertEqual(self.user.email, "tedd.an@intel.com")
+        self.assertIsInstance(self.user.settings, patchwork.UserSettings.UserSettings)
 
     def testNoToken(self):
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org')
+        self.pw = patchwork.Patchwork("https://patchwork.kernel.org")
         with self.assertRaises(patchwork.ForbiddenException):
-            self.user =  self.pw.get_user(104215)
-
+            self.user = self.pw.get_user(104215)

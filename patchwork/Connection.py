@@ -23,6 +23,7 @@ from urllib.parse import urlparse, urlencode
 
 from . import PatchworkException
 
+
 class Connection:
     """
     Connection class
@@ -60,10 +61,10 @@ class Connection:
 
     def __update_auth_token(self, headers):
         if self.__token is not None:
-            headers['Authorization'] = f'Token {self.__token}'
+            headers["Authorization"] = f"Token {self.__token}"
 
     def __make_abs_url(self, url):
-        if url.startswith('http'):
+        if url.startswith("http"):
             return url
         # Relative path
         return f"{self.__scheme}://{self.__hostname}{self.__path}{url}"
@@ -88,7 +89,7 @@ class Connection:
         return cls(status, headers, output)
 
     def __request(self, method, url, parameters, headers, input):
-        assert method in ['GET', 'POST', 'PATCH', 'PUT']
+        assert method in ["GET", "POST", "PATCH", "PUT"]
         if parameters is None:
             parameters = dict()
         if headers is None:
@@ -105,7 +106,7 @@ class Connection:
 
         enc_input = None
         if input is not None:
-            headers['Content-Type'] = "application/json"
+            headers["Content-Type"] = "application/json"
             enc_input = json.dumps(input)
 
         resp = requests.request(method, abs_url, headers=headers, data=enc_input)
@@ -138,5 +139,3 @@ class Connection:
         :type input: dict, optional
         """
         return self.__request(method, url, parameters, headers, input)
-
-

@@ -21,24 +21,25 @@ import os
 
 import patchwork
 
+
 class TestPeople(unittest.TestCase):
     def testBasicAttributes(self):
-        self.assertIn('PW_USER_TOKEN', os.environ,
-                      "Missing PW_TOKEN environment variable")
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org',
-                                      os.environ['PW_USER_TOKEN'])
+        self.assertIn(
+            "PW_USER_TOKEN", os.environ, "Missing PW_TOKEN environment variable"
+        )
+        self.pw = patchwork.Patchwork(
+            "https://patchwork.kernel.org", os.environ["PW_USER_TOKEN"]
+        )
         self.people = self.pw.get_people(196023)
         self.assertEqual(self.people.id, 196023)
-        self.assertEqual(self.people.url,
-                         'https://patchwork.kernel.org/api/people/196023/')
-        self.assertEqual(self.people.name, 'Tedd An')
-        self.assertEqual(self.people.email, 'hj.tedd.an@gmail.com')
-        self.assertIsInstance(self.people.get_user_info(),
-                              patchwork.User.User)
+        self.assertEqual(
+            self.people.url, "https://patchwork.kernel.org/api/people/196023/"
+        )
+        self.assertEqual(self.people.name, "Tedd An")
+        self.assertEqual(self.people.email, "hj.tedd.an@gmail.com")
+        self.assertIsInstance(self.people.get_user_info(), patchwork.User.User)
 
     def testNoToken(self):
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org')
+        self.pw = patchwork.Patchwork("https://patchwork.kernel.org")
         with self.assertRaises(patchwork.ForbiddenException):
             self.people = self.pw.get_people(196023)
-
-

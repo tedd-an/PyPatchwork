@@ -16,6 +16,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/
 """
+
+
 class UserSettings:
     """
     Class for User setting object
@@ -30,21 +32,21 @@ class UserSettings:
         self._update_attributes(attributes)
 
     def _update_attributes(self, attributes):
-        if 'send_email' in attributes:
-            self._send_email = attributes['send_email']
-        if 'items_per_page' in attributes:
-            self._items_per_page = attributes['items_per_page']
-        if 'show_ids' in attributes:
-            self._show_ids = attributes['show_ids']
+        if "send_email" in attributes:
+            self._send_email = attributes["send_email"]
+        if "items_per_page" in attributes:
+            self._items_per_page = attributes["items_per_page"]
+        if "show_ids" in attributes:
+            self._show_ids = attributes["show_ids"]
 
     def __repr__(self):
         output = ""
         if self._send_email != None:
-            output += f'{self._send_email}'
+            output += f"{self._send_email}"
         if self._items_per_page != None:
-            output += f'{self._items_per_page}'
+            output += f"{self._items_per_page}"
         if self._show_ids != None:
-            output += f'{self._show_ids}'
+            output += f"{self._show_ids}"
         return output
 
     @property

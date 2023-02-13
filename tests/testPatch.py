@@ -19,37 +19,50 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 import unittest
 import patchwork
 
+
 class TestPatch(unittest.TestCase):
     def setUp(self):
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org')
+        self.pw = patchwork.Patchwork("https://patchwork.kernel.org")
         self.patch = self.pw.get_patch(12567487)
 
     def testBasicAttributes(self):
         self.assertEqual(self.patch.id, 12567487)
-        self.assertEqual(self.patch.url,
-                         "https://patchwork.kernel.org/api/patches/12567487/")
-        self.assertEqual(self.patch.web_url,
-                         "https://patchwork.kernel.org/project/bluetooth/patch/20211018172833.534191-2-hj.tedd.an@gmail.com/")
-        self.assertEqual(self.patch.msgid,
-                         "<20211018172833.534191-2-hj.tedd.an@gmail.com>")
-        self.assertEqual(self.patch.list_archive_url,
-                         "https://lore.kernel.org/r/20211018172833.534191-2-hj.tedd.an@gmail.com")
+        self.assertEqual(
+            self.patch.url, "https://patchwork.kernel.org/api/patches/12567487/"
+        )
+        self.assertEqual(
+            self.patch.web_url,
+            "https://patchwork.kernel.org/project/bluetooth/patch/20211018172833.534191-2-hj.tedd.an@gmail.com/",
+        )
+        self.assertEqual(
+            self.patch.msgid, "<20211018172833.534191-2-hj.tedd.an@gmail.com>"
+        )
+        self.assertEqual(
+            self.patch.list_archive_url,
+            "https://lore.kernel.org/r/20211018172833.534191-2-hj.tedd.an@gmail.com",
+        )
         self.assertEqual(self.patch.date, "2021-10-18T17:28:25")
-        self.assertEqual(self.patch.name,
-                         "[BlueZ,1/9] device: Fix unchecked return value")
+        self.assertEqual(
+            self.patch.name, "[BlueZ,1/9] device: Fix unchecked return value"
+        )
         self.assertEqual(self.patch.commit_ref, None)
         self.assertEqual(self.patch.pull_url, None)
         self.assertEqual(self.patch.state, "accepted")
         self.assertEqual(self.patch.archived, False)
-        self.assertEqual(self.patch.hash,
-                         "f8ffe4bbc6a3f3f2ebf2da58a6d10348f8e4903d")
-        self.assertEqual(self.patch.mbox,
-                         "https://patchwork.kernel.org/project/bluetooth/patch/20211018172833.534191-2-hj.tedd.an@gmail.com/mbox/")
-        self.assertEqual(self.patch.comments,
-                         "https://patchwork.kernel.org/api/patches/12567487/comments/")
+        self.assertEqual(self.patch.hash, "f8ffe4bbc6a3f3f2ebf2da58a6d10348f8e4903d")
+        self.assertEqual(
+            self.patch.mbox,
+            "https://patchwork.kernel.org/project/bluetooth/patch/20211018172833.534191-2-hj.tedd.an@gmail.com/mbox/",
+        )
+        self.assertEqual(
+            self.patch.comments,
+            "https://patchwork.kernel.org/api/patches/12567487/comments/",
+        )
         self.assertEqual(self.patch.check, "success")
-        self.assertEqual(self.patch.checks,
-                         "https://patchwork.kernel.org/api/patches/12567487/checks/")
+        self.assertEqual(
+            self.patch.checks,
+            "https://patchwork.kernel.org/api/patches/12567487/checks/",
+        )
         self.assertEqual(self.patch.tags, {})
         self.assertEqual(self.patch.related, [])
         self.assertEqual(self.patch.prefixes, ["BlueZ", "1/9"])
@@ -66,16 +79,18 @@ class TestPatch(unittest.TestCase):
         self.assertEqual(project.scm_url, "")
         self.assertEqual(project.webscm_url, "")
         self.assertEqual(project.list_archive_url, "")
-        self.assertEqual(project.list_archive_url_format,
-                         "https://lore.kernel.org/r/{}")
+        self.assertEqual(
+            project.list_archive_url_format, "https://lore.kernel.org/r/{}"
+        )
         self.assertEqual(project.commit_url_format, "")
-        self.assertTrue(self.patch.content.startswith('From: Tedd Ho-Jeong An'))
+        self.assertTrue(self.patch.content.startswith("From: Tedd Ho-Jeong An"))
 
     def testSubmitter(self):
         submitter = self.patch.get_submitter()
         self.assertEqual(submitter.id, 196023)
-        self.assertEqual(submitter.url,
-                         "https://patchwork.kernel.org/api/people/196023/")
+        self.assertEqual(
+            submitter.url, "https://patchwork.kernel.org/api/people/196023/"
+        )
         self.assertEqual(submitter.name, "Tedd An")
         self.assertEqual(submitter.email, "hj.tedd.an@gmail.com")
 
@@ -96,24 +111,30 @@ class TestPatch(unittest.TestCase):
             self.assertIsInstance(series, patchwork.Series.Series)
         series_0 = series_list[0]
         self.assertEqual(series_0.id, 565705)
-        self.assertEqual(series_0.url,
-                         "https://patchwork.kernel.org/api/series/565705/")
-        self.assertEqual(series_0.web_url,
-                         "https://patchwork.kernel.org/project/bluetooth/list/?series=565705")
+        self.assertEqual(
+            series_0.url, "https://patchwork.kernel.org/api/series/565705/"
+        )
+        self.assertEqual(
+            series_0.web_url,
+            "https://patchwork.kernel.org/project/bluetooth/list/?series=565705",
+        )
         self.assertEqual(series_0.date, "2021-10-18T17:28:24")
         self.assertEqual(series_0.name, "Fix unchecked return value")
         self.assertEqual(series_0.version, 1)
-        self.assertEqual(series_0.mbox,
-                         "https://patchwork.kernel.org/series/565705/mbox/")
+        self.assertEqual(
+            series_0.mbox, "https://patchwork.kernel.org/series/565705/mbox/"
+        )
 
     def testHeaders(self):
         headers = self.patch.headers
         # Only check a few of them..
-        self.assertIn('From', headers)
-        self.assertEqual(headers['From'], "Tedd Ho-Jeong An <hj.tedd.an@gmail.com>")
-        self.assertIn('Subject', headers)
-        self.assertEqual(headers['Subject'],
-                         "[BlueZ PATCH 1/9] device: Fix unchecked return value")
-        self.assertIn('Message-Id', headers)
-        self.assertEqual(headers['Message-Id'],
-                         "<20211018172833.534191-2-hj.tedd.an@gmail.com>")
+        self.assertIn("From", headers)
+        self.assertEqual(headers["From"], "Tedd Ho-Jeong An <hj.tedd.an@gmail.com>")
+        self.assertIn("Subject", headers)
+        self.assertEqual(
+            headers["Subject"], "[BlueZ PATCH 1/9] device: Fix unchecked return value"
+        )
+        self.assertIn("Message-Id", headers)
+        self.assertEqual(
+            headers["Message-Id"], "<20211018172833.534191-2-hj.tedd.an@gmail.com>"
+        )

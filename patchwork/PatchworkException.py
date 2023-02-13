@@ -16,6 +16,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/
 """
+
+
 class PatchworkException(Exception):
     """
     Exception class for Patchwork
@@ -29,10 +31,10 @@ class PatchworkException(Exception):
         self.__detail = self.__get_detail()
 
     def __get_detail(self):
-        if 'Content-Type' in self.__headers:
-            if self.__headers['Content-Type'] == 'application/json':
+        if "Content-Type" in self.__headers:
+            if self.__headers["Content-Type"] == "application/json":
                 if "detail" in self.__data:
-                    return self.__data['detail']
+                    return self.__data["detail"]
         return "Generic Exception"
 
     @property
@@ -52,20 +54,24 @@ class PatchworkException(Exception):
     def __str__(self):
         return f"{self.__status} {self.__detail}"
 
+
 class BadRequestException(PatchworkException):
     """
     400 Bad Request - Invalid Request
     """
+
 
 class ForbiddenException(PatchworkException):
     """
     403 Forbidden - Fobidden
     """
 
+
 class NotFoundException(PatchworkException):
     """
     404 Not Found - Not Found
     """
+
 
 class ConflictException(PatchworkException):
     """

@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 """
 import patchwork.User
 
+
 class People:
     """
     Class for People object
@@ -34,19 +35,19 @@ class People:
         self._update_attributes(attributes)
 
     def _update_attributes(self, attributes):
-        if 'id' in attributes:
-            self._id = attributes['id']
-        if 'url' in attributes:
-            self._url = attributes['url']
-        if 'name' in attributes:
-            self._name = attributes['name']
-        if 'email' in attributes:
-            self._email = attributes['email']
-        if 'user' in attributes:
-            self._user = attributes['user']
+        if "id" in attributes:
+            self._id = attributes["id"]
+        if "url" in attributes:
+            self._url = attributes["url"]
+        if "name" in attributes:
+            self._name = attributes["name"]
+        if "email" in attributes:
+            self._email = attributes["email"]
+        if "user" in attributes:
+            self._user = attributes["user"]
 
     def __repr__(self):
-        return f'People(id:{self._id} name:{self._name} email:{self._email})'
+        return f"People(id:{self._id} name:{self._name} email:{self._email})"
 
     @property
     def id(self):

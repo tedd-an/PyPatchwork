@@ -22,6 +22,7 @@ import patchwork.People
 import patchwork.Project
 import patchwork.Series
 
+
 class Cover:
     """
     Class for Cover Letter object
@@ -46,34 +47,34 @@ class Cover:
         self.__update_attributes(attributes)
 
     def __update_attributes(self, attributes):
-        if 'id' in attributes:
-            self._id = attributes['id']
-        if 'url' in attributes:
-            self._url = attributes['url']
-        if 'web_url' in attributes:
-            self._web_url = attributes['web_url']
-        if 'project' in attributes:
-            self._project = attributes['project']
-        if 'msgid' in attributes:
-            self._msgid = attributes['msgid']
-        if 'list_archive_url' in attributes:
-            self._list_archive_url = attributes['list_archive_url']
-        if 'date' in attributes:
-            self._date = attributes['date']
-        if 'name' in attributes:
-            self._name = attributes['name']
-        if 'submitter' in attributes:
-            self._submitter = attributes['submitter']
-        if 'mbox' in attributes:
-            self._mbox = attributes['mbox']
-        if 'series' in attributes:
-            self._series = attributes['series']
-        if 'comments' in attributes:
-            self._comments = attributes['comments']
-        if 'headers' in attributes:
-            self._headers = attributes['headers']
-        if 'content' in attributes:
-            self._content = attributes['content']
+        if "id" in attributes:
+            self._id = attributes["id"]
+        if "url" in attributes:
+            self._url = attributes["url"]
+        if "web_url" in attributes:
+            self._web_url = attributes["web_url"]
+        if "project" in attributes:
+            self._project = attributes["project"]
+        if "msgid" in attributes:
+            self._msgid = attributes["msgid"]
+        if "list_archive_url" in attributes:
+            self._list_archive_url = attributes["list_archive_url"]
+        if "date" in attributes:
+            self._date = attributes["date"]
+        if "name" in attributes:
+            self._name = attributes["name"]
+        if "submitter" in attributes:
+            self._submitter = attributes["submitter"]
+        if "mbox" in attributes:
+            self._mbox = attributes["mbox"]
+        if "series" in attributes:
+            self._series = attributes["series"]
+        if "comments" in attributes:
+            self._comments = attributes["comments"]
+        if "headers" in attributes:
+            self._headers = attributes["headers"]
+        if "content" in attributes:
+            self._content = attributes["content"]
 
     @property
     def id(self):
@@ -180,11 +181,9 @@ class Cover:
         :calls: GET /api/patches/{id}/comments
         """
         headers, data = self._connection.request(
-            'GET',
-            f'/api/patches/{self._id}/comments'
+            "GET", f"/api/patches/{self._id}/comments"
         )
         comments = []
         for comment in data:
             comments.append(patchwork.Comment.Comment(comment))
         return comments
-

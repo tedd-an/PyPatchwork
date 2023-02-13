@@ -18,10 +18,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 """
 import patchwork.People
 
+
 class Comment:
     """
     Class for Comment object
     """
+
     def __init__(self, connection, attributes):
         self._connection = connection
         self._id = None
@@ -36,24 +38,24 @@ class Comment:
         self.__update_attributes(attributes)
 
     def __update_attributes(self, attributes):
-        if 'id' in attributes:
-            self._id = attributes['id']
-        if 'web_url' in attributes:
-            self._web_url = attributes['web_url']
-        if 'msgid' in attributes:
-            self._msgid = attributes['msgid']
-        if 'list_archive_url' in attributes:
-            self._list_archive_url = attributes['list_archive_url']
-        if 'date' in attributes:
-            self._date = attributes['date']
-        if 'subject' in attributes:
-            self._subject = attributes['subject']
-        if 'submitter' in attributes:
-            self._submitter = attributes['submitter']
-        if 'headers' in attributes:
-            self._headers = attributes['headers']
-        if 'content' in attributes:
-            self._content = attributes['content']
+        if "id" in attributes:
+            self._id = attributes["id"]
+        if "web_url" in attributes:
+            self._web_url = attributes["web_url"]
+        if "msgid" in attributes:
+            self._msgid = attributes["msgid"]
+        if "list_archive_url" in attributes:
+            self._list_archive_url = attributes["list_archive_url"]
+        if "date" in attributes:
+            self._date = attributes["date"]
+        if "subject" in attributes:
+            self._subject = attributes["subject"]
+        if "submitter" in attributes:
+            self._submitter = attributes["submitter"]
+        if "headers" in attributes:
+            self._headers = attributes["headers"]
+        if "content" in attributes:
+            self._content = attributes["content"]
 
     @property
     def id(self):
@@ -116,4 +118,3 @@ class Comment:
         Submitter detail (partial)
         """
         return patchwork.People.People(self._connection, self._submitter)
-

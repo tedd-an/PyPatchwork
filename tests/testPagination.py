@@ -20,12 +20,15 @@ import os
 import unittest
 import patchwork
 
+
 class TestPagination(unittest.TestCase):
     def setUp(self):
-        self.assertIn('PW_USER_TOKEN', os.environ,
-                      "Missing PW_TOKEN environment variable")
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org',
-                                      os.environ['PW_USER_TOKEN'])
+        self.assertIn(
+            "PW_USER_TOKEN", os.environ, "Missing PW_TOKEN environment variable"
+        )
+        self.pw = patchwork.Patchwork(
+            "https://patchwork.kernel.org", os.environ["PW_USER_TOKEN"]
+        )
 
     def testIteration(self):
         projects = self.pw.get_all_projects()

@@ -20,12 +20,15 @@ import os
 import unittest
 import patchwork
 
+
 class TestPatchwork(unittest.TestCase):
     def setUp(self):
-        self.assertIn('PW_USER_TOKEN', os.environ,
-                      "Missing PW_TOKEN environment variable")
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org',
-                                      os.environ['PW_USER_TOKEN'])
+        self.assertIn(
+            "PW_USER_TOKEN", os.environ, "Missing PW_TOKEN environment variable"
+        )
+        self.pw = patchwork.Patchwork(
+            "https://patchwork.kernel.org", os.environ["PW_USER_TOKEN"]
+        )
 
     def testInvalidParameters(self):
         with self.assertRaises(AssertionError):
@@ -75,4 +78,3 @@ class TestPatchwork(unittest.TestCase):
         self.runGetAll(self.pw.get_all_cover_letters, patchwork.Cover.Cover)
         self.runGetAll(self.pw.get_all_patches, patchwork.Patch.Patch)
         self.runGetAll(self.pw.get_all_bundles, patchwork.Bundle.Bundle)
-

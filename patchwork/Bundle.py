@@ -20,6 +20,7 @@ import patchwork.Patch
 import patchwork.Project
 import patchwork.User
 
+
 class Bundle:
     """
     Class for Bundle object
@@ -39,24 +40,24 @@ class Bundle:
         self.__update_attributes(attributes)
 
     def __update_attributes(self, attributes):
-        if 'id' in attributes:
-            self._id = attributes['id']
-        if 'url' in attributes:
-            self._url = attributes['url']
-        if 'web_url' in attributes:
-            self._web_url = attributes['web_url']
-        if 'project' in attributes:
-            self._project = attributes['project']
-        if 'name' in attributes:
-            self._name = attributes['name']
-        if 'owner' in attributes:
-            self._owner = attributes['owner']
-        if 'patches' in attributes:
-            self._patches = attributes['patches']
-        if 'public' in attributes:
-            self._public = attributes['public']
-        if 'mbox' in attributes:
-            self._mbox = attributes['mbox']
+        if "id" in attributes:
+            self._id = attributes["id"]
+        if "url" in attributes:
+            self._url = attributes["url"]
+        if "web_url" in attributes:
+            self._web_url = attributes["web_url"]
+        if "project" in attributes:
+            self._project = attributes["project"]
+        if "name" in attributes:
+            self._name = attributes["name"]
+        if "owner" in attributes:
+            self._owner = attributes["owner"]
+        if "patches" in attributes:
+            self._patches = attributes["patches"]
+        if "public" in attributes:
+            self._public = attributes["public"]
+        if "mbox" in attributes:
+            self._mbox = attributes["mbox"]
 
     @property
     def id(self):

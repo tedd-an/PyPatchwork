@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 """
 import patchwork.User
 
+
 class Project:
     """
     Class for project object
@@ -42,37 +43,37 @@ class Project:
         self.__update_attributes(attributes)
 
     def __update_attributes(self, attributes):
-        if 'id' in attributes:
-            self._id = attributes['id']
-        if 'url'  in attributes:
-            self._url = attributes['url']
-        if 'name' in attributes:
-            self._name = attributes['name']
-        if 'link_name' in attributes:
-            self._link_name = attributes['link_name']
-        if 'list_id' in attributes:
-            self._list_id = attributes['list_id']
-        if 'list_email' in attributes:
-            self._list_email = attributes['list_email']
-        if 'web_url' in attributes:
-            self._web_url = attributes['web_url']
-        if 'scm_url' in attributes:
-            self._scm_url = attributes['scm_url']
-        if 'webscm_url' in attributes:
-            self._webscm_url = attributes['webscm_url']
-        if 'maintainers' in attributes:
-            self._maintainers = attributes['maintainers']
-        if 'subject_match' in attributes:
-            self._subject_match = attributes['subject_match']
-        if 'list_archive_url' in attributes:
-            self._list_archive_url = attributes['list_archive_url']
-        if 'list_archive_url_format' in attributes:
-            self._list_archive_url_format = attributes['list_archive_url_format']
-        if 'commit_url_format' in attributes:
-            self._commit_url_format = attributes['commit_url_format']
+        if "id" in attributes:
+            self._id = attributes["id"]
+        if "url" in attributes:
+            self._url = attributes["url"]
+        if "name" in attributes:
+            self._name = attributes["name"]
+        if "link_name" in attributes:
+            self._link_name = attributes["link_name"]
+        if "list_id" in attributes:
+            self._list_id = attributes["list_id"]
+        if "list_email" in attributes:
+            self._list_email = attributes["list_email"]
+        if "web_url" in attributes:
+            self._web_url = attributes["web_url"]
+        if "scm_url" in attributes:
+            self._scm_url = attributes["scm_url"]
+        if "webscm_url" in attributes:
+            self._webscm_url = attributes["webscm_url"]
+        if "maintainers" in attributes:
+            self._maintainers = attributes["maintainers"]
+        if "subject_match" in attributes:
+            self._subject_match = attributes["subject_match"]
+        if "list_archive_url" in attributes:
+            self._list_archive_url = attributes["list_archive_url"]
+        if "list_archive_url_format" in attributes:
+            self._list_archive_url_format = attributes["list_archive_url_format"]
+        if "commit_url_format" in attributes:
+            self._commit_url_format = attributes["commit_url_format"]
 
     def __repr__(self):
-        return f'Project(id:{self._id} name:{self._name})'
+        return f"Project(id:{self._id} name:{self._name})"
 
     @property
     def id(self):

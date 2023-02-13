@@ -20,17 +20,19 @@ import os
 import unittest
 import patchwork
 
+
 class TestConnection(unittest.TestCase):
     def testWithToken(self):
-        self.assertIn('PW_USER_TOKEN', os.environ,
-                      "Missing PW_TOKEN environment variable")
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org',
-                                      os.environ['PW_USER_TOKEN'])
+        self.assertIn(
+            "PW_USER_TOKEN", os.environ, "Missing PW_TOKEN environment variable"
+        )
+        self.pw = patchwork.Patchwork(
+            "https://patchwork.kernel.org", os.environ["PW_USER_TOKEN"]
+        )
         self.bundle = self.pw.get_bundle(34802)
         self.assertIsInstance(self.bundle, patchwork.Bundle.Bundle)
 
     def testNoToken(self):
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org')
+        self.pw = patchwork.Patchwork("https://patchwork.kernel.org")
         with self.assertRaises(patchwork.NotFoundException):
-            self.bundle =  self.pw.get_bundle(34802)
-
+            self.bundle = self.pw.get_bundle(34802)

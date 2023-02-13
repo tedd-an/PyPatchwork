@@ -19,9 +19,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 import unittest
 import patchwork
 
+
 class TestCheck(unittest.TestCase):
     def setUp(self):
-        self.pw = patchwork.Patchwork('https://patchwork.kernel.org')
+        self.pw = patchwork.Patchwork("https://patchwork.kernel.org")
         self.patch = self.pw.get_patch(12567487)
         checks = self.patch.get_checks()
         self.assertIsNotNone(checks)
@@ -31,12 +32,15 @@ class TestCheck(unittest.TestCase):
 
     def testBasicAttributes(self):
         self.assertEqual(self.check.id, 745895)
-        self.assertEqual(self.check.url,
-                         "https://patchwork.kernel.org/api/patches/12567487/checks/745895/")
+        self.assertEqual(
+            self.check.url,
+            "https://patchwork.kernel.org/api/patches/12567487/checks/745895/",
+        )
         self.assertEqual(self.check.date, "2021-10-18T17:47:10.203518")
         self.assertEqual(self.check.state, "success")
-        self.assertEqual(self.check.target_url,
-                         "https://github.com/BluezTestBot/bluez/pull/1042")
+        self.assertEqual(
+            self.check.target_url, "https://github.com/BluezTestBot/bluez/pull/1042"
+        )
         self.assertEqual(self.check.context, "checkpatch")
         self.assertEqual(self.check.description, "Checkpatch PASS")
 
@@ -44,12 +48,11 @@ class TestCheck(unittest.TestCase):
         user = self.check.get_user()
         self.assertIsInstance(user, patchwork.User.User)
         self.assertEqual(user.id, 104215)
-        self.assertEqual(user.url,
-                         'https://patchwork.kernel.org/api/users/104215/')
-        self.assertEqual(user.username, 'tedd_an')
-        self.assertEqual(user.first_name, 'Tedd')
-        self.assertEqual(user.last_name, 'An')
-        self.assertEqual(user.email, 'tedd.an@intel.com')
+        self.assertEqual(user.url, "https://patchwork.kernel.org/api/users/104215/")
+        self.assertEqual(user.username, "tedd_an")
+        self.assertEqual(user.first_name, "Tedd")
+        self.assertEqual(user.last_name, "An")
+        self.assertEqual(user.email, "tedd.an@intel.com")
 
 
 """

@@ -21,10 +21,12 @@ import patchwork.Patch
 import patchwork.People
 import patchwork.Project
 
+
 class Series:
     """
     Class for Series object
     """
+
     def __init__(self, connection, attributes):
         self._connection = connection
         self._id = None
@@ -44,34 +46,34 @@ class Series:
         self.__update_attributes(attributes)
 
     def __update_attributes(self, attributes):
-        if 'id' in attributes:
-            self._id = attributes['id']
-        if 'url' in attributes:
-            self._url = attributes['url']
-        if 'web_url' in attributes:
-            self._web_url = attributes['web_url']
-        if 'project' in attributes:
-            self._project = attributes['project']
-        if 'name' in attributes:
-            self._name = attributes['name']
-        if 'date' in attributes:
-            self._date = attributes['date']
-        if 'submitter' in attributes:
-            self._submitter = attributes['submitter']
-        if 'version' in attributes:
-            self._version = attributes['version']
-        if 'total' in attributes:
-            self._total = attributes['total']
-        if 'received_total' in attributes:
-            self._received_total = attributes['received_total']
-        if 'received_all' in attributes:
-            self._received_all = attributes['received_all']
-        if 'mbox' in attributes:
-            self._mbox = attributes['mbox']
-        if 'cover_letter' in attributes:
-            self._cover_letter = attributes['cover_letter']
-        if 'patches' in attributes:
-            self._patches = attributes['patches']
+        if "id" in attributes:
+            self._id = attributes["id"]
+        if "url" in attributes:
+            self._url = attributes["url"]
+        if "web_url" in attributes:
+            self._web_url = attributes["web_url"]
+        if "project" in attributes:
+            self._project = attributes["project"]
+        if "name" in attributes:
+            self._name = attributes["name"]
+        if "date" in attributes:
+            self._date = attributes["date"]
+        if "submitter" in attributes:
+            self._submitter = attributes["submitter"]
+        if "version" in attributes:
+            self._version = attributes["version"]
+        if "total" in attributes:
+            self._total = attributes["total"]
+        if "received_total" in attributes:
+            self._received_total = attributes["received_total"]
+        if "received_all" in attributes:
+            self._received_all = attributes["received_all"]
+        if "mbox" in attributes:
+            self._mbox = attributes["mbox"]
+        if "cover_letter" in attributes:
+            self._cover_letter = attributes["cover_letter"]
+        if "patches" in attributes:
+            self._patches = attributes["patches"]
 
     @property
     def id(self):

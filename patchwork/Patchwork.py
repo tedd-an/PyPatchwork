@@ -26,6 +26,7 @@ import patchwork.Project
 import patchwork.Series
 import patchwork.User
 
+
 class Patchwork:
     """
     This is the main class to access the Patchwork API.
@@ -61,8 +62,8 @@ class Patchwork:
         assert isinstance(id, int)
 
         headers, data = self.__connection.request(
-            'GET',
-            f'/api/users/{id}',
+            "GET",
+            f"/api/users/{id}",
         )
         return patchwork.User.User(self.__connection, data)
 
@@ -75,7 +76,7 @@ class Patchwork:
         return patchwork.Pagination.Pagination(
             patchwork.User.User,
             self.__connection,
-            '/api/users',
+            "/api/users",
         )
 
     def get_project(self, id):
@@ -89,8 +90,8 @@ class Patchwork:
         assert isinstance(id, int)
 
         headers, data = self.__connection.request(
-            'GET',
-            f'/api/projects/{id}',
+            "GET",
+            f"/api/projects/{id}",
         )
         return patchwork.Project.Project(self.__connection, data)
 
@@ -103,7 +104,7 @@ class Patchwork:
         return patchwork.Pagination.Pagination(
             patchwork.Project.Project,
             self.__connection,
-            '/api/projects',
+            "/api/projects",
         )
 
     def get_people(self, id):
@@ -117,8 +118,8 @@ class Patchwork:
         assert isinstance(id, int)
 
         headers, data = self.__connection.request(
-            'GET',
-            f'/api/people/{id}',
+            "GET",
+            f"/api/people/{id}",
         )
         return patchwork.People.People(self.__connection, data)
 
@@ -131,7 +132,7 @@ class Patchwork:
         return patchwork.Pagination.Pagination(
             patchwork.People.People,
             self.__connection,
-            '/api/people',
+            "/api/people",
         )
 
     def get_series(self, id):
@@ -145,8 +146,8 @@ class Patchwork:
         assert isinstance(id, int)
 
         headers, data = self.__connection.request(
-            'GET',
-            f'/api/series/{id}',
+            "GET",
+            f"/api/series/{id}",
         )
         return patchwork.Series.Series(self.__connection, data)
 
@@ -159,7 +160,7 @@ class Patchwork:
         return patchwork.Pagination.Pagination(
             patchwork.Series.Series,
             self.__connection,
-            '/api/series',
+            "/api/series",
         )
 
     def get_cover_letter(self, id):
@@ -173,8 +174,8 @@ class Patchwork:
         assert isinstance(id, int)
 
         headers, data = self.__connection.request(
-            'GET',
-            f'/api/covers/{id}',
+            "GET",
+            f"/api/covers/{id}",
         )
         return patchwork.Cover.Cover(self.__connection, data)
 
@@ -187,7 +188,7 @@ class Patchwork:
         return patchwork.Pagination.Pagination(
             patchwork.Cover.Cover,
             self.__connection,
-            '/api/covers',
+            "/api/covers",
         )
 
     def get_patch(self, id):
@@ -201,8 +202,8 @@ class Patchwork:
         assert isinstance(id, int)
 
         headers, data = self.__connection.request(
-            'GET',
-            f'/api/patches/{id}',
+            "GET",
+            f"/api/patches/{id}",
         )
         return patchwork.Patch.Patch(self.__connection, data)
 
@@ -215,7 +216,7 @@ class Patchwork:
         return patchwork.Pagination.Pagination(
             patchwork.Patch.Patch,
             self.__connection,
-            '/api/patches',
+            "/api/patches",
         )
 
     def get_bundle(self, id):
@@ -229,8 +230,8 @@ class Patchwork:
         assert isinstance(id, int)
 
         headers, data = self.__connection.request(
-            'GET',
-            f'/api/bundles/{id}/',
+            "GET",
+            f"/api/bundles/{id}/",
         )
         return patchwork.Bundle.Bundle(self.__connection, data)
 
@@ -243,5 +244,5 @@ class Patchwork:
         return patchwork.Pagination.Pagination(
             patchwork.Bundle.Bundle,
             self.__connection,
-            '/api/bundles',
+            "/api/bundles",
         )

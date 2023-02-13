@@ -24,10 +24,12 @@ import patchwork.Project
 import patchwork.Series
 import patchwork.User
 
+
 class Patch:
     """
     Class for Patch object
     """
+
     def __init__(self, connection, attributes):
         self._connection = connection
         self._id = None
@@ -59,58 +61,58 @@ class Patch:
         self.__update_attributes(attributes)
 
     def __update_attributes(self, attributes):
-        if 'id' in attributes:
-            self._id = attributes['id']
-        if 'url' in attributes:
-            self._url = attributes['url']
-        if 'web_url' in attributes:
-            self._web_url = attributes['web_url']
-        if 'project' in attributes:
-            self._project = attributes['project']
-        if 'msgid' in attributes:
-            self._msgid = attributes['msgid']
-        if 'list_archive_url' in attributes:
-            self._list_archive_url = attributes['list_archive_url']
-        if 'date' in attributes:
-            self._date = attributes['date']
-        if 'name' in attributes:
-            self._name = attributes['name']
-        if 'commit_ref' in attributes:
-            self._commit_ref = attributes['commit_ref']
-        if 'pull_url' in attributes:
-            self._pull_url = attributes['pull_url']
-        if 'state' in attributes:
-            self._state = attributes['state']
-        if 'archived' in attributes:
-            self._archived = attributes['archived']
-        if 'hash' in attributes:
-            self._hash = attributes['hash']
-        if 'submitter' in attributes:
-            self._submitter = attributes['submitter']
-        if 'delegate' in attributes:
-            self._delegate = attributes['delegate']
-        if 'mbox' in attributes:
-            self._mbox = attributes['mbox']
-        if 'series' in attributes:
-            self._series = attributes['series']
-        if 'comments' in attributes:
-            self._comments = attributes['comments']
-        if 'check' in attributes:
-            self._check = attributes['check']
-        if 'checks' in attributes:
-            self._checks = attributes['checks']
-        if 'tags' in attributes:
-            self._tags = attributes['tags']
-        if 'related' in attributes:
-            self._related = attributes['related']
-        if 'headers' in attributes:
-            self._headers = attributes['headers']
-        if 'content' in attributes:
-            self._content = attributes['content']
-        if 'diff' in attributes:
-            self._diff = attributes['diff']
-        if 'prefixes' in attributes:
-            self._prefixes = attributes['prefixes']
+        if "id" in attributes:
+            self._id = attributes["id"]
+        if "url" in attributes:
+            self._url = attributes["url"]
+        if "web_url" in attributes:
+            self._web_url = attributes["web_url"]
+        if "project" in attributes:
+            self._project = attributes["project"]
+        if "msgid" in attributes:
+            self._msgid = attributes["msgid"]
+        if "list_archive_url" in attributes:
+            self._list_archive_url = attributes["list_archive_url"]
+        if "date" in attributes:
+            self._date = attributes["date"]
+        if "name" in attributes:
+            self._name = attributes["name"]
+        if "commit_ref" in attributes:
+            self._commit_ref = attributes["commit_ref"]
+        if "pull_url" in attributes:
+            self._pull_url = attributes["pull_url"]
+        if "state" in attributes:
+            self._state = attributes["state"]
+        if "archived" in attributes:
+            self._archived = attributes["archived"]
+        if "hash" in attributes:
+            self._hash = attributes["hash"]
+        if "submitter" in attributes:
+            self._submitter = attributes["submitter"]
+        if "delegate" in attributes:
+            self._delegate = attributes["delegate"]
+        if "mbox" in attributes:
+            self._mbox = attributes["mbox"]
+        if "series" in attributes:
+            self._series = attributes["series"]
+        if "comments" in attributes:
+            self._comments = attributes["comments"]
+        if "check" in attributes:
+            self._check = attributes["check"]
+        if "checks" in attributes:
+            self._checks = attributes["checks"]
+        if "tags" in attributes:
+            self._tags = attributes["tags"]
+        if "related" in attributes:
+            self._related = attributes["related"]
+        if "headers" in attributes:
+            self._headers = attributes["headers"]
+        if "content" in attributes:
+            self._content = attributes["content"]
+        if "diff" in attributes:
+            self._diff = attributes["diff"]
+        if "prefixes" in attributes:
+            self._prefixes = attributes["prefixes"]
 
     @property
     def id(self):
@@ -306,8 +308,7 @@ class Patch:
         :calls: GET /api/patches/{id}/comments
         """
         headers, data = self._connection.request(
-            'GET',
-            f'/api/patches/{self._id}/comments'
+            "GET", f"/api/patches/{self._id}/comments"
         )
         comments = []
         for comment in data:
@@ -321,8 +322,7 @@ class Patch:
         :calls: GET /api/patches/{id}/checks
         """
         headers, data = self._connection.request(
-            'GET',
-            f'/api/patches/{self._id}/checks'
+            "GET", f"/api/patches/{self._id}/checks"
         )
         checks = []
         for check in data:
@@ -338,7 +338,6 @@ class Patch:
         :type check_id: integer
         """
         headers, data = self._connection.request(
-            'GET',
-            f'/api/patches/{self._id}/checks/{check_id}'
+            "GET", f"/api/patches/{self._id}/checks/{check_id}"
         )
         return patchwork.Check.Check(self._connection, data)
