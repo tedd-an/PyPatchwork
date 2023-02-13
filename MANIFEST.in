@@ -1,0 +1,4 @@
+include LICENSE
+include README.md
+global-exclude __pycahce__
+global-exclude *.py[co]
