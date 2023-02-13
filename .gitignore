@@ -1,2 +1,8 @@
 *.pyc
 */__pycahce__/
+dist
+.tox
+.coverage
+coverage.xml
+.vscode
+PyPatchwork.egg-info/
