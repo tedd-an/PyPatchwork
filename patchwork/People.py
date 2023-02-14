@@ -81,6 +81,6 @@ class People:
         """
         User info if exist
         """
-        if self._user == None:
+        if self._user is None:
             return None
         return patchwork.User.User(self._connection, self._user)

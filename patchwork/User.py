@@ -37,7 +37,7 @@ class User:
         self._update_attributes(attributes)
 
     def _update_attributes(self, attributes):
-        if attributes == None:
+        if attributes is None:
             return
         if "id" in attributes:
             self._id = attributes["id"]

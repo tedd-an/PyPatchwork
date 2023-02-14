@@ -41,11 +41,11 @@ class UserSettings:
 
     def __repr__(self):
         output = ""
-        if self._send_email != None:
+        if self._send_email is not None:
             output += f"{self._send_email}"
-        if self._items_per_page != None:
+        if self._items_per_page is not None:
             output += f"{self._items_per_page}"
-        if self._show_ids != None:
+        if self._show_ids is not None:
             output += f"{self._show_ids}"
         return output
 
