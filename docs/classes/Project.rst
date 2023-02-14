@@ -1,4 +1,4 @@
 Project
 =======
 
-.. autoclass:: patchwork.Project.Project
+.. autoclass:: patchwork.Project.Project()
