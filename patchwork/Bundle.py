@@ -104,18 +104,21 @@ class Bundle:
     def get_project(self):
         """
         Project detail (partial)
+        :rtype: :class:`patchwork.Project.Project`
         """
         return patchwork.Project.Project(self._connection, self._project)
 
     def get_owner(self):
         """
         Owner detail (partial)
+        :rtype: :class:`patchwork.User.User`
         """
         return patchwork.User.User(self._connection, self._owner)
 
     def get_patches(self):
         """
         List of Patches
+        :rtype: List of :class:`patchwork.Patch.Patch`
         """
         patches = []
         for patch in self._patches:
