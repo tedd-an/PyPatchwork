@@ -46,6 +46,12 @@ pygments_style = "sphinx"
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = True
 
-autodoc_default_flags = ["members"]
-autodoc_member_order = "bysource"
+# autodoc_default_flags = ["members"]
+# autodoc_member_order = "bysource"
 autoclass_content = "both"
+
+autodoc_default_options = {
+    'members': True,
+    'member-order': 'bysource',
+    'undoc-members': False,
+}
