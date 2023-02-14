@@ -19,6 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 import patchwork.Check
 import patchwork.Comment
 import patchwork.Connection
+import patchwork.Patch
 import patchwork.People
 import patchwork.Project
 import patchwork.Series
@@ -268,18 +269,24 @@ class Patch:
     def get_project(self):
         """
         Project detail (partial)
+
+        :rtype: :class:`patchwork.Project.Project`
         """
         return patchwork.Project.Project(self._connection, self._project)
 
     def get_submitter(self):
         """
         Submitter detail (partial)
+
+        :rtype: :class:`patchwork.People.People`
         """
         return patchwork.People.People(self._connection, self._submitter)
 
     def get_series(self):
         """
         Series detail (partial)
+
+        :rtype: List of :class:`patchwork.Series.Series`
         """
         series = []
         for ser in self._series:
@@ -289,6 +296,8 @@ class Patch:
     def get_related(self):
         """
         List of related patch detail (partial)
+
+        :rtype: List of :class:`patchwork.Patch.Patch`
         """
         related = []
         for patch in self._related:
@@ -298,6 +307,8 @@ class Patch:
     def get_delegate(self):
         """
         Delegated User detail (partial)
+
+        :rtype: :class:`patchwork.User.User`
         """
         return patchwork.User.User(self._connection, self._delegate)
 
@@ -306,6 +317,7 @@ class Patch:
         List comments
 
         :calls: GET /api/patches/{id}/comments
+        :rtype: List of :class:`patchwork.Comment.Comment`
         """
         headers, data = self._connection.request(
             "GET", f"/api/patches/{self._id}/comments"
@@ -320,6 +332,7 @@ class Patch:
         List checks
 
         :calls: GET /api/patches/{id}/checks
+        :rtype: List of :class:`patchwork.Check.Check`
         """
         headers, data = self._connection.request(
             "GET", f"/api/patches/{self._id}/checks"
@@ -336,6 +349,7 @@ class Patch:
         :calls: GET /api/patches/{id}/checks/{check_id}
         :param check_id: A unique integer value identifying this check
         :type check_id: integer
+        :rtype: :class:`patchwork.Check.Check`
         """
         headers, data = self._connection.request(
             "GET", f"/api/patches/{self._id}/checks/{check_id}"

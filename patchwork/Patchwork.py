@@ -58,6 +58,7 @@ class Patchwork:
         :calls: GET /api/users/{id}/
         :param id: A unique integer value identifying this user
         :type id: integer
+        :rtype: :class:`patchwork.User.User`
         """
         assert isinstance(id, int)
 
@@ -72,6 +73,7 @@ class Patchwork:
         List Users
 
         :calls: GET /api/users/
+        :rtype: :class:`patchwork.Pagination.Pagination` of :class:`patchwork.User.User`
         """
         return patchwork.Pagination.Pagination(
             patchwork.User.User,
@@ -86,6 +88,7 @@ class Patchwork:
         :calls: GET /api/projects/{id}
         :param id: A unique integer value identifying this project
         :type id: integer
+        :rtype: :class:`patchwork.Project.Project`
         """
         assert isinstance(id, int)
 
@@ -100,6 +103,7 @@ class Patchwork:
         List projects
 
         :calls: GET /api/projects/
+        :rtype: :class:`patchwork.Pagination.Pagination` of :class:`patchwork.Project.Project`
         """
         return patchwork.Pagination.Pagination(
             patchwork.Project.Project,
@@ -114,6 +118,7 @@ class Patchwork:
         :calls: GET /api/people/{id}
         :param id: A unique integer value identifying this person
         :type id: integer
+        :rtype: :class:`patchwork.People.People`
         """
         assert isinstance(id, int)
 
@@ -128,6 +133,7 @@ class Patchwork:
         List People
 
         :calls: GET /api/people/
+        :rtype: :class:`patchwork.Pagination.Pagination` of :class:`patchwork.People.People`
         """
         return patchwork.Pagination.Pagination(
             patchwork.People.People,
@@ -142,6 +148,7 @@ class Patchwork:
         :calls: GET /api/series/{id}
         :param id: A unique integer value identifying this series
         :type id: integer
+        :rtype: :class:`patchwork.Series.Series`
         """
         assert isinstance(id, int)
 
@@ -156,6 +163,7 @@ class Patchwork:
         List series
 
         :calls: GET /api/series/
+        :rtype: :class:`patchwork.Pagination.Pagination` of :class:`patchwork.Series.Series`
         """
         return patchwork.Pagination.Pagination(
             patchwork.Series.Series,
@@ -170,6 +178,7 @@ class Patchwork:
         :calls: GET /api/covers/{id}
         :param id: A unique integer value identifying this cover letter
         :type id: integer
+        :rtype: :class:`patchwork.Cover.Cover`
         """
         assert isinstance(id, int)
 
@@ -184,6 +193,7 @@ class Patchwork:
         List Cover letters
 
         :calls: GET /api/covers/
+        :rtype: :class:`patchwork.Pagination.Pagination` of :class:`patchwork.Cover.Cover`
         """
         return patchwork.Pagination.Pagination(
             patchwork.Cover.Cover,
@@ -198,6 +208,7 @@ class Patchwork:
         :calls: GET /api/patches/{id}
         :param id: A unique integer value identifying this patch
         :type id: integer
+        :rtype: :class:`patchwork.Patch.Patch`
         """
         assert isinstance(id, int)
 
@@ -212,6 +223,7 @@ class Patchwork:
         List Patches
 
         :calls: GET /api/patches/
+        :rtype: :class:`patchwork.Pagination.Pagination` of :class:`patchwork.Patch.Patch`
         """
         return patchwork.Pagination.Pagination(
             patchwork.Patch.Patch,
@@ -226,6 +238,7 @@ class Patchwork:
         :calls: GET /api/bundles/{id}
         :param id: A unique integer value identifying this bundle
         :type id: integer
+        :rtype: :class:`patchwork.Bundle.Bundle`
         """
         assert isinstance(id, int)
 
@@ -240,6 +253,7 @@ class Patchwork:
         List Bundles
 
         :calls: GET /api/bundles
+        :rtype: :class:`patchwork.Pagination.Pagination` of :class:`patchwork.Bundle.Bundle`
         """
         return patchwork.Pagination.Pagination(
             patchwork.Bundle.Bundle,

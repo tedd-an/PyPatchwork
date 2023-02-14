@@ -148,18 +148,24 @@ class Series:
     def get_project(self):
         """
         Project detail (partial)
+
+        :rtype: :class:`patchwork.Project.Project`
         """
         return patchwork.Project.Project(self._connection, self._project)
 
     def get_submitter(self):
         """
         Submitter detail (partial)
+
+        :rtype: :class:`patchwork.People.People`
         """
         return patchwork.People.People(self._connection, self._submitter)
 
     def get_patches(self):
         """
         List of Patches
+
+        :rtype: List of :class:`patchwork.Patch.Patch`
         """
         patches = []
         for patch in self._patches:
@@ -169,5 +175,7 @@ class Series:
     def get_cover_letter(self):
         """
         Cover letter detail
+
+        :rtype: :class:`patchwork.Cover.Cover`
         """
         return patchwork.Cover.Cover(self._connection, self._cover_letter)

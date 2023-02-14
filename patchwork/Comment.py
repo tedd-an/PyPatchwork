@@ -116,5 +116,7 @@ class Comment:
     def get_submitter(self):
         """
         Submitter detail (partial)
+
+        :rtype: :class:`patchwork.People.People`
         """
         return patchwork.People.People(self._connection, self._submitter)

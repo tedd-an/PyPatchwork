@@ -102,6 +102,6 @@ class User:
     @property
     def settings(self):
         """
-        :type: UserSetting
+        :type: :class:`patchwork.UserSettings.UserSettings`
         """
         return patchwork.UserSettings.UserSettings(self._connection, self._settings)

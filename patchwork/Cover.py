@@ -156,18 +156,24 @@ class Cover:
     def get_project(self):
         """
         Project detail (partial)
+
+        :rtype: :class:`patchwork.Project.Project`
         """
         return patchwork.Project.Project(self._connection, self._project)
 
     def get_submitter(self):
         """
         Submitter detail (partial)
+
+        :rtype: :class:`patchwork.People.People`
         """
         return patchwork.People.People(self._connection, self._submitter)
 
     def get_series(self):
         """
         Series detail
+
+        :rtype: List of :class:`patchwork.Series.Series`
         """
         series = []
         for ser in self._series:
@@ -179,6 +185,7 @@ class Cover:
         List comments
 
         :calls: GET /api/patches/{id}/comments
+        :rtype: List of :class:`patchwork.Comment.Comment`
         """
         headers, data = self._connection.request(
             "GET", f"/api/patches/{self._id}/comments"

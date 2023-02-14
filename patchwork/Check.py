@@ -106,5 +106,7 @@ class Check:
     def get_user(self):
         """
         User detail (partial)
+
+        :rtype: :class:`patchwork.User.User`
         """
         return User(self._connection, self._user)

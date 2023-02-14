@@ -169,6 +169,8 @@ class Project:
     def get_maintainers(self):
         """
         List of maintainers
+
+        :rtype: List of :class:`patchwork.User.User`
         """
         maintainers = []
         for maintainer in self._maintainers:

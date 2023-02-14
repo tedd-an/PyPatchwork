@@ -80,6 +80,8 @@ class People:
     def get_user_info(self):
         """
         User info if exist
+
+        :rtype: :class:`patchwork.User.User`
         """
         if self._user is None:
             return None
