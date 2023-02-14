@@ -3,18 +3,58 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to PyPatchwork's documentation!
-=======================================
+PyPatchwork
+===========
+
+PyPatchwork is a Python library to access the `Patchwork`_ REST API.
+
+.. _Patchwork: http://jk.ozlabs.org/projects/patchwork
+
+Installation
+------------
+
+This package can be installed from `Python Package Index <https://pypi.org>`_ (PyPi):
+
+.. code-block:: shell
+
+   $ pip install PyPatchwork
+
+Usage
+-----
+
+.. code-block:: python3
+
+   from patchwork import Patchwork
+
+   # Create Patchwork object
+   pw = Patchwork('https://patchwork.kernel.org')
+
+   # Create Patchwork object with access token
+   pw = Patchwork('https://patchwork.kernel.org', 'access_token')
+
+Examples
+--------
+
+.. code-block:: python3
+
+   from patchwork import Patchwork
+
+   pw = Patchwork('https://patchwork.kernel.org')
+
+   # Get projects
+   project = pw.get_project(395)
+
+   # Get Series
+   series = pw.get_series(565705)
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: API Reference
 
+   api
 
+.. toctree::
+   :maxdepth: 1
+   :caption: ToDo
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   TODO

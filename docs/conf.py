@@ -13,12 +13,12 @@ author = 'Tedd Ho-Jeong An'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
+extensions = [ 'sphinx.ext.todo' ]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build']
 
-
+master_doc = 'index'
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
