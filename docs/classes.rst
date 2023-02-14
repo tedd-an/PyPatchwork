@@ -2,7 +2,6 @@ Patchwork Classes
 =================
 
 .. toctree::
-   :maxdepth: 1
 
    classes/Bundle
    classes/Check
