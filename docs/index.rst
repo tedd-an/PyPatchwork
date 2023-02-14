@@ -48,13 +48,13 @@ Examples
    series = pw.get_series(565705)
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: API Reference
 
-   api
+   classes
 
 .. toctree::
    :maxdepth: 1
-   :caption: ToDo
+   :caption: TODO
 
    TODO
