@@ -76,6 +76,9 @@ class Cover:
         if "content" in attributes:
             self._content = attributes["content"]
 
+    def __repr__(self):
+        return f"Cover(id:{self._id} name:{self._name})"
+
     @property
     def id(self):
         """

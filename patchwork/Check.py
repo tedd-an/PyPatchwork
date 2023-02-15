@@ -54,6 +54,9 @@ class Check:
         if "description" in attributes:
             self._description = attributes["description"]
 
+    def __repr__(self):
+        return f"Check(id:{self._id} state:{self._state} context:{self._context})"
+
     @property
     def id(self):
         """

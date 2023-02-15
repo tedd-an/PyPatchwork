@@ -75,6 +75,9 @@ class Series:
         if "patches" in attributes:
             self._patches = attributes["patches"]
 
+    def __repr__(self):
+        return f"Series(id:{self._id} name:{self._name})"
+
     @property
     def id(self):
         """

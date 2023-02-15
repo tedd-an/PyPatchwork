@@ -59,6 +59,9 @@ class Bundle:
         if "mbox" in attributes:
             self._mbox = attributes["mbox"]
 
+    def __repr__(self):
+        return f"Bundle(id:{self._id} name:{self._name})"
+
     @property
     def id(self):
         """

@@ -116,6 +116,9 @@ class Patch:
         if "prefixes" in attributes:
             self._prefixes = attributes["prefixes"]
 
+    def __repr__(self):
+        return f"Patch(id:{self._id} state:{self._state} name:{self._name})"
+
     @property
     def id(self):
         """

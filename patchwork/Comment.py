@@ -57,6 +57,9 @@ class Comment:
         if "content" in attributes:
             self._content = attributes["content"]
 
+    def __repr__(self):
+        return f"Comment(id:{self._id} subject:{self._subject})"
+
     @property
     def id(self):
         """
