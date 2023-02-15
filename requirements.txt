@@ -1,3 +1,4 @@
 requests
+validators
 sphinx
 sphinx-rtd-theme
