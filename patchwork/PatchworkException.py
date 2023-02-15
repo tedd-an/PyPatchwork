@@ -35,6 +35,8 @@ class PatchworkException(Exception):
             if self.__headers["Content-Type"] == "application/json":
                 if "detail" in self.__data:
                     return self.__data["detail"]
+                # In case of 400, it shows the list of invalid parameters
+                return self.__data
         return "Generic Exception"
 
     @property
