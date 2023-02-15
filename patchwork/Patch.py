@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/
 """
+import validators
 import patchwork.Check
 import patchwork.Comment
 import patchwork.Connection
@@ -353,5 +354,48 @@ class Patch:
         """
         headers, data = self._connection.request(
             "GET", f"/api/patches/{self._id}/checks/{check_id}"
+        )
+        return patchwork.Check.Check(self._connection, data)
+
+    def create_check(self, user, state, context, target_url=None, description=None):
+        """
+        Create a check
+
+        :calls: POST /api/patches/{patch_id}/checks/
+        :param user: User object
+        :type user: :class: patchwork.User.User
+        :param state: Result of the check like success, warning, fail, pending. Rquired.
+        :type state: string
+        :param target_url: URL of the check detail. Must be a valid URL. Optional
+        :type target_url: string
+        :param context: Context of the check like test name. Required field. No space allowed.
+        :type context: string
+        :param description: Description of the check. Optional
+        :type description: string
+        """
+        assert isinstance(user, patchwork.User.User), "Invalid parameter: user"
+        assert state in ["success", "warning", "fail", "pending"], "Invalid parameter: state"
+        assert context is not None, "Invalid parameter: context"
+        assert ' ' not in context, "Invalid parameter: context cannot have a space"
+
+        params = {}
+        params['user'] = user.id
+        params['state'] = state
+        params['context'] = context
+
+        if target_url is None:
+            params['target_url'] = ""
+        else:
+            assert validators.url(target_url), "Invalid parameter: target_url"
+            params['target_url'] = target_url
+
+        if description is None:
+            params['description'] = ""
+        else:
+            params['description'] = description
+
+        headers, data = self._connection.request(
+            "POST", f"/api/patches/{self._id}/checks/",
+            input=params
         )
         return patchwork.Check.Check(self._connection, data)
