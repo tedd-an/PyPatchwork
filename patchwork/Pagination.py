@@ -56,6 +56,7 @@ class Pagination:
         headers, data = self.__connection.request(
             "GET",
             self.__next_link,
+            self.__next_params,
         )
         data = data if data else []
 
@@ -64,6 +65,8 @@ class Pagination:
             links = self._get_next_link(headers)
             if "next" in links:
                 self.__next_link = links["next"]
+        # Can be set to None since the initial params are already included in
+        # the __next_link.
         self.__next_params = None
 
         content = []
