@@ -363,7 +363,7 @@ class Patch:
 
         :calls: POST /api/patches/{patch_id}/checks/
         :param user: User object
-        :type user: :class: patchwork.User.User
+        :type user: :class:`patchwork.User.User`
         :param state: Result of the check like success, warning, fail, pending. Rquired.
         :type state: string
         :param target_url: URL of the check detail. Must be a valid URL. Optional
@@ -372,30 +372,35 @@ class Patch:
         :type context: string
         :param description: Description of the check. Optional
         :type description: string
+        :rtype: :class:`patchwork.Check.Check`
         """
         assert isinstance(user, patchwork.User.User), "Invalid parameter: user"
-        assert state in ["success", "warning", "fail", "pending"], "Invalid parameter: state"
+        assert state in [
+            "success",
+            "warning",
+            "fail",
+            "pending",
+        ], "Invalid parameter: state"
         assert context is not None, "Invalid parameter: context"
-        assert ' ' not in context, "Invalid parameter: context cannot have a space"
+        assert " " not in context, "Invalid parameter: context cannot have a space"
 
         params = {}
-        params['user'] = user.id
-        params['state'] = state
-        params['context'] = context
+        params["user"] = user.id
+        params["state"] = state
+        params["context"] = context
 
         if target_url is None:
-            params['target_url'] = ""
+            params["target_url"] = ""
         else:
             assert validators.url(target_url), "Invalid parameter: target_url"
-            params['target_url'] = target_url
+            params["target_url"] = target_url
 
         if description is None:
-            params['description'] = ""
+            params["description"] = ""
         else:
-            params['description'] = description
+            params["description"] = description
 
         headers, data = self._connection.request(
-            "POST", f"/api/patches/{self._id}/checks/",
-            input=params
+            "POST", f"/api/patches/{self._id}/checks/", input=params
         )
         return patchwork.Check.Check(self._connection, data)

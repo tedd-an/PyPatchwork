@@ -138,3 +138,24 @@ class TestPatch(unittest.TestCase):
         self.assertEqual(
             headers["Message-Id"], "<20211018172833.534191-2-hj.tedd.an@gmail.com>"
         )
+
+    def testCreateCheckAssertion(self):
+        mock_user = {
+            "id": 104215
+        }
+        user = patchwork.User.User(None, mock_user)
+        # invalid User
+        with self.assertRaises(AssertionError):
+            self.patch.create_check(None, "a", "b")
+        # invalid status
+        with self.assertRaises(AssertionError):
+            self.patch.create_check(user, "a", "b")
+        # Space in context
+        with self.assertRaises(AssertionError):
+            self.patch.create_check(user, "success", "c ontext")
+        # Invalid url format
+        with self.assertRaises(AssertionError):
+            self.patch.create_check(user, "success", "context", "target")
+        # ForbiddenException due to missing token
+        with self.assertRaises(patchwork.ForbiddenException):
+            self.patch.create_check(user, "fail", "testcontext")
