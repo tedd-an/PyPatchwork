@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 """
 import unittest
 import patchwork
+import datetime
 
 
 class TestCover(unittest.TestCase):
@@ -41,7 +42,7 @@ class TestCover(unittest.TestCase):
             self.cover.list_archive_url,
             "https://lore.kernel.org/r/20211018172833.534191-1-hj.tedd.an@gmail.com",
         )
-        self.assertEqual(self.cover.date, "2021-10-18T17:28:24")
+        self.assertIsInstance(self.cover.date, datetime.datetime)
         self.assertEqual(self.cover.name, "[BlueZ,0/9] Fix unchecked return value")
         self.assertEqual(
             self.cover.mbox,
@@ -52,6 +53,13 @@ class TestCover(unittest.TestCase):
             "https://patchwork.kernel.org/api/covers/12567485/comments/",
         )
         self.assertTrue(self.cover.content.startswith("From: Tedd Ho-Jeong An"))
+
+    def testDateTime(self):
+        read_date = datetime.datetime.strptime(
+            "2021-10-18T17:28:24",
+            "%Y-%m-%dT%H:%M:%S"
+        )
+        self.assertEqual(self.cover.date, read_date)
 
     def testHeaders(self):
         headers = self.cover.headers
@@ -108,7 +116,7 @@ class TestCover(unittest.TestCase):
             series_0.web_url,
             "https://patchwork.kernel.org/project/bluetooth/list/?series=565705",
         )
-        self.assertEqual(series_0.date, "2021-10-18T17:28:24")
+        self.assertIsInstance(series_0.date, datetime.datetime)
         self.assertEqual(series_0.name, "Fix unchecked return value")
         self.assertEqual(series_0.version, 1)
         self.assertEqual(

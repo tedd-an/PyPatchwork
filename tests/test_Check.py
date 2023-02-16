@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 """
 import unittest
 import patchwork
-
+import datetime
 
 class TestCheck(unittest.TestCase):
     def setUp(self):
@@ -36,13 +36,20 @@ class TestCheck(unittest.TestCase):
             self.check.url,
             "https://patchwork.kernel.org/api/patches/12567487/checks/745895/",
         )
-        self.assertEqual(self.check.date, "2021-10-18T17:47:10.203518")
         self.assertEqual(self.check.state, "success")
+        self.assertIsInstance(self.check.date, datetime.datetime)
         self.assertEqual(
             self.check.target_url, "https://github.com/BluezTestBot/bluez/pull/1042"
         )
         self.assertEqual(self.check.context, "checkpatch")
         self.assertEqual(self.check.description, "Checkpatch PASS")
+
+    def testDateTime(self):
+        read_date = datetime.datetime.strptime(
+            "2021-10-18T17:47:10.203518",
+            "%Y-%m-%dT%H:%M:%S.%f"
+        )
+        self.assertEqual(self.check.date, read_date)
 
     def testUser(self):
         user = self.check.get_user()

@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 """
 import unittest
 import patchwork
+import datetime
 
 
 class TestPatch(unittest.TestCase):
@@ -41,7 +42,7 @@ class TestPatch(unittest.TestCase):
             self.patch.list_archive_url,
             "https://lore.kernel.org/r/20211018172833.534191-2-hj.tedd.an@gmail.com",
         )
-        self.assertEqual(self.patch.date, "2021-10-18T17:28:25")
+        self.assertIsInstance(self.patch.date, datetime.datetime)
         self.assertEqual(
             self.patch.name, "[BlueZ,1/9] device: Fix unchecked return value"
         )
@@ -66,6 +67,14 @@ class TestPatch(unittest.TestCase):
         self.assertEqual(self.patch.tags, {})
         self.assertEqual(self.patch.related, [])
         self.assertEqual(self.patch.prefixes, ["BlueZ", "1/9"])
+
+    def testDateTime(self):
+        read_date = datetime.datetime.strptime(
+            "2021-10-18T17:28:25",
+            "%Y-%m-%dT%H:%M:%S"
+        )
+        self.assertEqual(self.patch.date, read_date)
+
 
     def testProject(self):
         project = self.patch.get_project()
@@ -118,7 +127,7 @@ class TestPatch(unittest.TestCase):
             series_0.web_url,
             "https://patchwork.kernel.org/project/bluetooth/list/?series=565705",
         )
-        self.assertEqual(series_0.date, "2021-10-18T17:28:24")
+        self.assertIsInstance(series_0.date, datetime.datetime)
         self.assertEqual(series_0.name, "Fix unchecked return value")
         self.assertEqual(series_0.version, 1)
         self.assertEqual(

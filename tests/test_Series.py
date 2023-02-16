@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 """
 import unittest
 import patchwork
+import datetime
 
 
 class TestSeries(unittest.TestCase):
@@ -35,7 +36,7 @@ class TestSeries(unittest.TestCase):
             "https://patchwork.kernel.org/project/bluetooth/list/?series=565705",
         )
         self.assertEqual(self.series.name, "Fix unchecked return value")
-        self.assertEqual(self.series.date, "2021-10-18T17:28:24")
+        self.assertIsInstance(self.series.date, datetime.datetime)
         self.assertEqual(self.series.version, 1)
         self.assertEqual(self.series.total, 9)
         self.assertEqual(self.series.received_total, 9)
@@ -50,6 +51,13 @@ class TestSeries(unittest.TestCase):
         self.assertIsNotNone(patches)
         for patch in patches:
             self.assertIsInstance(patch, patchwork.Patch.Patch)
+
+    def testDateTime(self):
+        read_date = datetime.datetime.strptime(
+            "2021-10-18T17:28:24",
+            "%Y-%m-%dT%H:%M:%S"
+        )
+        self.assertEqual(self.series.date, read_date)
 
     def testProject(self):
         project = self.series.get_project()
@@ -90,7 +98,7 @@ class TestSeries(unittest.TestCase):
             cover.list_archive_url,
             "https://lore.kernel.org/r/20211018172833.534191-1-hj.tedd.an@gmail.com",
         )
-        self.assertEqual(cover.date, "2021-10-18T17:28:24")
+        self.assertIsInstance(cover.date, datetime.datetime)
         self.assertEqual(cover.name, "[BlueZ,0/9] Fix unchecked return value")
         self.assertEqual(
             cover.mbox,
@@ -115,7 +123,7 @@ class TestSeries(unittest.TestCase):
             patch_0.list_archive_url,
             "https://lore.kernel.org/r/20211018172833.534191-2-hj.tedd.an@gmail.com",
         )
-        self.assertEqual(patch_0.date, "2021-10-18T17:28:25")
+        self.assertIsInstance(patch_0.date, datetime.datetime)
         self.assertEqual(patch_0.name, "[BlueZ,1/9] device: Fix unchecked return value")
         self.assertEqual(
             patch_0.mbox,

@@ -18,6 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 """
 import unittest
 import patchwork
+import datetime
 
 
 class TestComment(unittest.TestCase):
@@ -42,9 +43,16 @@ class TestComment(unittest.TestCase):
             self.comment.list_archive_url,
             "https://lore.kernel.org/r/616db65f.1c69fb81.c4a83.fe17@mx.google.com",
         )
-        self.assertEqual(self.comment.date, "2021-10-18T18:01:03")
+        self.assertIsInstance(self.comment.date, datetime.datetime)
         self.assertEqual(self.comment.subject, "RE: Fix unchecked return value")
         self.assertTrue(self.comment.content.startswith("This is automated email"))
+
+    def testDateTime(self):
+        read_date = datetime.datetime.strptime(
+            "2021-10-18T18:01:03",
+            "%Y-%m-%dT%H:%M:%S"
+        )
+        self.assertEqual(self.comment.date, read_date)
 
     def testHeaders(self):
         headers = self.comment.headers

@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/
 """
+import datetime
 import patchwork.Cover
 import patchwork.Patch
 import patchwork.People
@@ -57,7 +58,9 @@ class Series:
         if "name" in attributes:
             self._name = attributes["name"]
         if "date" in attributes:
-            self._date = attributes["date"]
+            self._date = datetime.datetime.strptime(
+                attributes["date"], "%Y-%m-%dT%H:%M:%S"
+            )
         if "submitter" in attributes:
             self._submitter = attributes["submitter"]
         if "version" in attributes:
@@ -116,7 +119,7 @@ class Series:
     @property
     def date(self):
         """
-        :type: string
+        :type: datetime.datetime
         """
         return self._date
 

@@ -19,6 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/
 import os
 import unittest
 import patchwork
+import datetime
 
 
 class TestBundle(unittest.TestCase):
@@ -100,7 +101,7 @@ class TestBundle(unittest.TestCase):
             patch_0.list_archive_url,
             "https://lore.kernel.org/r/20211018172833.534191-2-hj.tedd.an@gmail.com",
         )
-        self.assertEqual(patch_0.date, "2021-10-18T17:28:25")
+        self.assertIsInstance(patch_0.date, datetime.datetime)
         self.assertEqual(patch_0.name, "[BlueZ,1/9] device: Fix unchecked return value")
         self.assertEqual(
             patch_0.mbox,

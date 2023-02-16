@@ -16,6 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/
 """
+import datetime
 import patchwork.People
 
 
@@ -47,7 +48,9 @@ class Comment:
         if "list_archive_url" in attributes:
             self._list_archive_url = attributes["list_archive_url"]
         if "date" in attributes:
-            self._date = attributes["date"]
+            self._date = datetime.datetime.strptime(
+                attributes["date"], "%Y-%m-%dT%H:%M:%S"
+            )
         if "subject" in attributes:
             self._subject = attributes["subject"]
         if "submitter" in attributes:
@@ -91,7 +94,7 @@ class Comment:
     @property
     def date(self):
         """
-        :type: string
+        :type: datetime.datetime
         """
         return self._date
 
