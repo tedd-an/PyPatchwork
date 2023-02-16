@@ -218,6 +218,108 @@ class Patchwork:
         )
         return patchwork.Patch.Patch(self.__connection, data)
 
+    def _validate_state(self, state):
+        """
+        Validate the states
+
+        :param states: List of slug representation of state
+        :type states: list
+        :rtype: bool
+        """
+        if state != "" and state in [
+            "new",
+            "under-review",
+            "accepted",
+            "rejected",
+            "rfc",
+            "not-applicable",
+            "changes-requested",
+            "awaiting-upstream",
+            "superseded",
+            "deferred",
+            "mainlined",
+            "queued",
+            "needs-ack",
+            "handled-elsewhere",
+            "in-next",
+        ]:
+            return True
+        return False
+
+    def search_patches(
+        self,
+        project=None,
+        series=None,
+        submitter=None,
+        delegate=None,
+        state=None,
+        archived=None,
+        hash=None,
+        msgid=None,
+    ):
+        """
+        List patches
+
+        :calls: GET /api/patches/
+        :param project: An ID or linkname of a project to filter patches by
+        :type project: string
+        :param series: An ID of a series to filter patches by
+        :type series: integer
+        :param submitter: An ID or email address of a person to filter patches by.
+        :type submitter: string
+        :param delegate: An ID or username of a user to filter patches by
+        :type delegate: string
+        :param state: A slug representation of a state to filter patches by
+        :type state: string
+        :param archived: Show only archived(True) or non-archived(False) patches
+        :type archived: bool
+        :param hash: The patch hash as a case-insensitive hexadecial string to filter by
+        :type hash: string
+        :param msgid: The patch message-id as a case-sensitive string, without leading or trailing angle brackets, to filter by
+        :type msgid: string
+        :rtype: :class:`patchwork.Pagination.Pagination` of :class:`patchwork.Patch.Patch`
+        """
+        # Check input parameters
+        assert project is None or isinstance(project, str)
+        assert series is None or isinstance(series, int)
+        assert submitter is None or isinstance(submitter, str)
+        assert delegate is None or isinstance(delegate, str)
+        assert state is None or isinstance(state, str)
+        assert self._validate_state(state)
+        assert archived is None or isinstance(archived, bool)
+        assert hash is None or isinstance(hash, str)
+        assert msgid is None or isinstance(msgid, str)
+
+        # Build the parameters
+        params = {}
+        if project is not None:
+            params["project"] = project
+        if series is not None:
+            params["series"] = series
+        if submitter is not None:
+            params["submitter"] = submitter
+        if delegate is not None:
+            params["delegate"] = delegate
+        if archived is not None:
+            params["archived"] = archived
+        if hash is not None:
+            params["hash"] = hash
+        if msgid is not None:
+            params["msgid"] = msgid
+        if state is not None:
+            params["state"] = state
+
+        # If all parameters are empty, throws an exception.
+        # This is not what this function for...
+        assert bool(params), "Illegal operation. Expect at least one parameter"
+
+        return patchwork.Pagination.Pagination(
+            patchwork.Patch.Patch,
+            self.__connection,
+            "/api/patches",
+            params,
+        )
+
     def get_all_patches(self):
         """
         List Patches
