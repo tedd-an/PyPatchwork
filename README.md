@@ -2,7 +2,7 @@
 PyPatchwork is a Python library to access the [Patchwork](http://jk.ozlabs.org/projects/patchwork/) REST API.
 
 ## Installation
-This package can be installed from [Python Package Index(PyPi)](https://pypi.org/).
+This package can be installed from [Python Package Index(PyPi)](https://pypi.org/project/PyPatchwork/).
 
 ```bash
 $ pip install PyPatchwork
