@@ -70,11 +70,9 @@ class TestPatch(unittest.TestCase):
 
     def testDateTime(self):
         read_date = datetime.datetime.strptime(
-            "2021-10-18T17:28:25",
-            "%Y-%m-%dT%H:%M:%S"
+            "2021-10-18T17:28:25", "%Y-%m-%dT%H:%M:%S"
         )
         self.assertEqual(self.patch.date, read_date)
-
 
     def testProject(self):
         project = self.patch.get_project()
@@ -149,9 +147,7 @@ class TestPatch(unittest.TestCase):
         )
 
     def testCreateCheckAssertion(self):
-        mock_user = {
-            "id": 104215
-        }
+        mock_user = {"id": 104215}
         user = patchwork.User.User(None, mock_user)
         # invalid User
         with self.assertRaises(AssertionError):

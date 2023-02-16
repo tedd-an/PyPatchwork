@@ -56,8 +56,7 @@ class TestCover(unittest.TestCase):
 
     def testDateTime(self):
         read_date = datetime.datetime.strptime(
-            "2021-10-18T17:28:24",
-            "%Y-%m-%dT%H:%M:%S"
+            "2021-10-18T17:28:24", "%Y-%m-%dT%H:%M:%S"
         )
         self.assertEqual(self.cover.date, read_date)
 

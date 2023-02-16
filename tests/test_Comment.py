@@ -49,8 +49,7 @@ class TestComment(unittest.TestCase):
 
     def testDateTime(self):
         read_date = datetime.datetime.strptime(
-            "2021-10-18T18:01:03",
-            "%Y-%m-%dT%H:%M:%S"
+            "2021-10-18T18:01:03", "%Y-%m-%dT%H:%M:%S"
         )
         self.assertEqual(self.comment.date, read_date)
 

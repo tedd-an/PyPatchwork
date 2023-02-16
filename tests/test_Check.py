@@ -20,6 +20,7 @@ import unittest
 import patchwork
 import datetime
 
+
 class TestCheck(unittest.TestCase):
     def setUp(self):
         self.pw = patchwork.Patchwork("https://patchwork.kernel.org")
@@ -46,8 +47,7 @@ class TestCheck(unittest.TestCase):
 
     def testDateTime(self):
         read_date = datetime.datetime.strptime(
-            "2021-10-18T17:47:10.203518",
-            "%Y-%m-%dT%H:%M:%S.%f"
+            "2021-10-18T17:47:10.203518", "%Y-%m-%dT%H:%M:%S.%f"
         )
         self.assertEqual(self.check.date, read_date)
 

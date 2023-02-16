@@ -103,9 +103,8 @@ class TestPatchwork(unittest.TestCase):
 
     def testSearchPatch(self):
         patches = self.pw.search_patches(
-            project='bluetooth',
-            state="new",
-            archived=False)
+            project="bluetooth", state="new", archived=False
+        )
         self.assertTrue(bool(patches))
         for patch in patches:
             self.assertEqual(patch.state, "new")
