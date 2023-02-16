@@ -78,3 +78,37 @@ class TestPatchwork(unittest.TestCase):
         self.runGetAll(self.pw.get_all_cover_letters, patchwork.Cover.Cover)
         self.runGetAll(self.pw.get_all_patches, patchwork.Patch.Patch)
         self.runGetAll(self.pw.get_all_bundles, patchwork.Bundle.Bundle)
+
+    def testSearchPatchError(self):
+        with self.assertRaises(AssertionError):
+            self.pw.search_patches()
+        with self.assertRaises(AssertionError):
+            self.pw.search_patches(project=1)
+        with self.assertRaises(AssertionError):
+            self.pw.search_patches(series="one")
+        with self.assertRaises(AssertionError):
+            self.pw.search_patches(submitter=1)
+        with self.assertRaises(AssertionError):
+            self.pw.search_patches(delegate=1)
+        with self.assertRaises(AssertionError):
+            self.pw.search_patches(archived=1)
+        with self.assertRaises(AssertionError):
+            self.pw.search_patches(hash=1)
+        with self.assertRaises(AssertionError):
+            self.pw.search_patches(msgid=1)
+        with self.assertRaises(AssertionError):
+            self.pw.search_patches(state=1)
+        with self.assertRaises(AssertionError):
+            self.pw.search_patches(state="notnew")
+
+    def testSearchPatch(self):
+        patches = self.pw.search_patches(
+            project='bluetooth',
+            state="new",
+            archived=False)
+        self.assertTrue(bool(patches))
+        for patch in patches:
+            self.assertEqual(patch.state, "new")
+            self.assertFalse(patch.archived)
+            project = patch.get_project()
+            self.assertEqual(project.link_name, "bluetooth")
