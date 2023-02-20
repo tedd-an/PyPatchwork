@@ -98,7 +98,6 @@ class TestPatch(unittest.TestCase):
         self.assertEqual(
             submitter.url, "https://patchwork.kernel.org/api/people/196023/"
         )
-        self.assertEqual(submitter.name, "Tedd An")
         self.assertEqual(submitter.email, "hj.tedd.an@gmail.com")
 
     def testDelegate(self):

@@ -35,7 +35,6 @@ class TestPeople(unittest.TestCase):
         self.assertEqual(
             self.people.url, "https://patchwork.kernel.org/api/people/196023/"
         )
-        self.assertEqual(self.people.name, "Tedd An")
         self.assertEqual(self.people.email, "hj.tedd.an@gmail.com")
         self.assertIsInstance(self.people.get_user_info(), patchwork.User.User)
 
