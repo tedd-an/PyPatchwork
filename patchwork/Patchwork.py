@@ -256,6 +256,8 @@ class Patchwork:
         archived=None,
         hash=None,
         msgid=None,
+        before=None,
+        since=None,
     ):
         """
         List patches
@@ -277,6 +279,10 @@ class Patchwork:
         :type hash: string
         :param msgid: The patch message-id as a case-sensitive string, without leading or trailing angle brackets, to filter by
         :type msgid: string
+        :param before: Show patches with date before this date/time (ISO 8601 format)
+        :type before: string
+        :param since: Show patches with date after this date/time (ISO 8601 format)
+        :type since: string
         :rtype: :class:`patchwork.Pagination.Pagination` of :class:`patchwork.Patch.Patch`
         """
         # Check input parameters
@@ -289,6 +295,8 @@ class Patchwork:
         assert archived is None or isinstance(archived, bool)
         assert hash is None or isinstance(hash, str)
         assert msgid is None or isinstance(msgid, str)
+        assert before is None or isinstance(before, str)
+        assert since is None or isinstance(since, str)
 
         # Build the parameters
         params = {}
@@ -308,6 +316,10 @@ class Patchwork:
             params["msgid"] = msgid
         if state is not None:
             params["state"] = state
+        if before is not None:
+            params["before"] = before
+        if since is not None:
+            params["since"] = since
 
         # If all parameters are empty, throws an exception.
         # This is not what this function for...
