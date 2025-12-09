@@ -1,5 +1,9 @@
 # RELEASE NOTE
 
+## 0.1.2
+
+- Add support before and since in search_patches
+
 ## 0.1.0
 
 - Support GET method for following models:
